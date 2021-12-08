@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"
+      integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ=="
+      crossorigin="anonymous"
+    ></script>
+    <title>OutPut Page </title>
+    <!-- <script src="/src/SfmcApiHelper.ts"></script> -->
+    <button type="button" id="btnGetOauthToken" class="btn btn-primary"
+    onclick="getOAuthAccessToken()">ACCESS TOKEN</button>
+    <p id="demo" style="color:green;"></p>
+    <p id="demo1" style="color:red;"></p>
+    <body>
+      <h3>Enter Dataextension Name</h3>
+      <input type="text" id="txt"/>
+      <input type="submit" id="btSubmit"  onclick="creatingDomainConfigurationDE()" disabled />
+      <p id="demo2" style="color:green;"></p>
+      <p id="demo4" style="color:rgb(13, 0, 128);"></p>
+    <p id="demo3" style="color:red;"></p>
+  </body>
+    <br><br>
+    
+</head>
+<body>
+  <script>
+    function getOAuthAccessToken() {
+    axios({
+      method: "GET",
+      url: "/appdemoauthtoken",        
+    }
+    )
+      .then(function (response) {
+        
+        document.getElementById("demo").innerHTML = "token generated";
+        var bt = document.getElementById('btSubmit');
+
+            bt.disabled = false;
+        
+         console.log("accesstokengeneration:" +JSON.stringify(response.data) );
+         console.log("sparkpost ",response)
+         createSparkpostIntegrationFolder(response.data);
+        
+        // thisdata.setState({ refreshtoken: response.data.refreshToken });
+        //AppUserInfo(thisdata, response.data.refreshToken);
+      })
+         .catch(function (error) {
+          document.getElementById("demo1").innerHTML = "token not generated";
+        console.log(error);
+      });
+  }
+
+
+      // creating Sparkpost Integration Data folder
+      function createSparkpostIntegrationFolder(response) {
+        console.log("sparkpost integretion",response);
+        axios({
+          method: "POST",
+          url: "/createsparkpostintegrationfolder",
+          data: {
+              accessToken:response.oauthAccessToken
+          }
+        })
+          .then(function (response) {
+            console.log(
+              "createSparkpostIntegrationFolder:" +
+                JSON.stringify(response.data)
+            );
+            // if (response.data.statusText) {
+            //   thisdata.setState({ refreshtoken: response.data.refreshToken });
+            //   thisdata.setState({ FolderID: response.data.FolderID });
+              
+            //   // creatingDomainConfigurationDE(req,res)
+            // } else {
+            //   console.log("Error creating data extension folder");
+            // }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+     
+  function creatingDomainConfigurationDE(req,res)
+ 
+ {
+   var dataextensionname = document.getElementById("txt").value;
+   console.log("dataextensionname=",dataextensionname);
+  //  console.log("methodcalled");
+       axios({
+         method: "POST",
+         url: "/creatingDomainConfigurationDE",
+         data: {
+          dataextensionname : dataextensionname,
+           soap_instance_url: "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.soap.marketingcloudapis.com/",
+           
+         },
+         
+       })
+         .then(function (response) {
+           console.log(
+             "creatingDomainConfigurationDE:" + JSON.stringify(response)
+           );
+           document.getElementById("demo2").innerHTML = "dataextension created";
+           document.getElementById("demo4").innerHTML = JSON.stringify(response);
+           // if (response.data) {
+           
+           //   thisdata.setState({
+           //     DEexternalKeyDomainConfiguration:
+           //       response.data.DEexternalKeyDomainConfiguration,
+           //   });
+            
+           // } else {
+           //   console.log("Error creating data extension folder");
+           // }
+         })
+         .catch(function (error) {
+          document.getElementById("demo3").innerHTML = "dataextension not created";
+           console.log(error);
+         });
+     }
+      
+  </script>
+
+</body>
+</html>
+   
