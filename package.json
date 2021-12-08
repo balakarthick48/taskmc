@@ -1,0 +1,74 @@
+{
+  "name": "sfmc-df18demo",
+  "version": "1.0.0",
+  "description": "Getting Started with Marketing Cloud API Integrations - Dreamforce 2018",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "postinstall": "npm run-script build"
+  },
+  "engines": {
+    "node": "^9.3.0",
+    "npm": "^5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanagama/sfmc-df18demo.git"
+  },
+  "keywords": [
+    "Salesforce",
+    "Marketing Cloud"
+  ],
+  "author": "Sanjay Nagamangalam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sanagama/sfmc-df18demo/issues"
+  },
+  "homepage": "https://github.com/sanagama/sfmc-df18demo#readme",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/compression": "0.0.36",
+    "@types/errorhandler": "0.0.32",
+    "@types/express": "^4.16.0",
+    "@types/express-session": "^1.17.4",
+    "@types/jquery": "^3.5.5",
+    "@types/jwt-simple": "^0.5.33",
+    "@types/morgan": "^1.7.35",
+    "@types/serve-favicon": "^2.2.30",
+    "@types/shortid": "0.0.29",
+    "@types/winston": "^2.4.4",
+    "axios": "^0.21.1",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "connect-redis": "^6.0.0",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^8.2.0",
+    "ejs": "^2.6.1",
+    "envfile": "^4.0.0-next.1574045988.e847b874c22dd3e805e4ecffd7af130d189d4ac5",
+    "errorhandler": "^1.5.0",
+    "express": "^4.16.2",
+    "express-session": "^1.17.0",
+    "file-system": "^1.2.2",
+    "helmet": "^3.13.0",
+    "helmet-csp": "^3.4.0",
+    "jquery": "^3.5.1",
+    "jsonwebtoken": "^8.0.1",
+    "jwt-simple": "^0.5.6",
+    "lodash": "^4.17.21",
+    "mc_generic_methods": "^1.0.3",
+    "morgan": "^1.10.0",
+    "redis": "^3.1.2",
+    "serve-favicon": "^2.5.0",
+    "shortid": "^2.2.13",
+    "sizzle": "^2.3.5",
+    "typescript": "^3.9.7",
+    "winston": "^3.1.0",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "@types/node": "^10.17.56",
+    "@types/qs": "^6.9.7",
+    "@types/xml2js": "^0.4.7"
+  }
+}
